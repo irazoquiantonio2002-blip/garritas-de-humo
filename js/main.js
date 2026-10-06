@@ -241,7 +241,7 @@
   if (canvas && !prefersReduced) {
     const ctx = canvas.getContext('2d');
     let w, h, particles, dpr, rafId;
-    const COLORS = ['94,234,160', '201,166,107', '243,241,234'];
+    const COLORS = ['94,234,160', '255,63,168', '243,241,234'];
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -301,6 +301,25 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(init, 200);
     });
+  }
+
+  /* ========================================================================
+     VIDEOS DEL PORTAFOLIO: solo cargan y reproducen al entrar en pantalla
+     ======================================================================== */
+  const inViewVideos = document.querySelectorAll('[data-autoplay-inview]');
+  if (inViewVideos.length && 'IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          if (!video.src && video.dataset.src) video.src = video.dataset.src;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.4 });
+    inViewVideos.forEach((v) => videoObserver.observe(v));
   }
 
   /* ========================================================================
