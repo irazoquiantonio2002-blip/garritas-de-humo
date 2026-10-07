@@ -7,11 +7,13 @@ Sitio estático (sin build ni dependencias): abre `index.html` en el navegador, 
 ## Estructura
 
 - `index.html` — marcado y SEO
-- `css/styles.css` — sistema de diseño (tema oscuro, acentos jade + rosa neón)
-- `js/main.js` — animaciones, menú, acordeón, carrusel y formulario a WhatsApp
+- `css/styles.css` — sistema de diseño mobile first (negro profundo, neón verde, crema y bronce del logo)
+- `js/main.js` — loader, canvas animado del hero, scroll suave (Lenis vía CDN, opcional), galería horizontal, contadores, FAQ y formulario a WhatsApp
 - `img/` — logo, fotos y videos del portafolio
-- `fonts/` — Bricolage Grotesque y Geist, autohospedadas
+- `fonts/` — Geist autohospedada (Instrument Serif y Geist Mono se cargan de Google Fonts)
 
-## Pendiente
+## Pendiente antes de publicar
 
-Agregar en `img/`: `servicio-soft-gel.jpg`, `servicio-gelish.jpg`, `servicio-rubber.jpg`, `servicio-press-on.jpg` y `og-cover.jpg`. Mientras no existan, cada espacio muestra un placeholder de marca.
+- Reemplazar `https://www.TU-DOMINIO.com` por el dominio real en `index.html` (canonical, Open Graph, Twitter y JSON-LD).
+- Sustituir los testimonios de ejemplo de la sección Opiniones por reseñas reales de clientas.
+- Opcional: crear `img/og-cover.jpg` (1200x630) y usarlo en `og:image` / `twitter:image` en lugar del logo.
