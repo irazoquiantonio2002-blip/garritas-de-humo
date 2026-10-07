@@ -45,6 +45,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
 
+  <!-- Agenda: conexión anticipada a Google Calendar para que el modal abra más rápido -->
+  <link rel="preconnect" href="https://calendar.google.com">
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://ssl.gstatic.com">
+  <link rel="dns-prefetch" href="https://apis.google.com">
+
   <link rel="preload" as="image" href="img/portafolio-03.jpg" fetchpriority="high">
   <link rel="stylesheet" href="css/styles.css">
 
@@ -68,7 +74,7 @@
         "image": "https://www.TU-DOMINIO.com/img/logo.jpg",
         "logo": "https://www.TU-DOMINIO.com/img/logo.jpg",
         "telephone": "+523326287517",
-        "priceRange": "$$",
+        "priceRange": "$300 - $700 MXN",
         "currenciesAccepted": "MXN",
         "paymentAccepted": "Efectivo, Transferencia",
         "areaServed": ["Zapopan", "Guadalajara"],
@@ -78,7 +84,7 @@
           "addressRegion": "Jalisco",
           "addressCountry": "MX"
         },
-        "sameAs": ["https://www.instagram.com/garritasdehumo"],
+        "sameAs": ["https://www.instagram.com/garritasdehumo", "https://www.tiktok.com/@chicadehumo777", "https://www.facebook.com/share/1dQjCNcZir/?mibextid=wwXIfr"],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Servicios de uñas",
@@ -86,14 +92,16 @@
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Uñas Soft Gel" } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gelish" } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rubber" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Press On a medida" } }
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Press On a medida" } },
+            { "@type": "Offer", "name": "Diseño esencial (un solo color)", "price": "300", "priceCurrency": "MXN" },
+            { "@type": "Offer", "name": "Diseño de autor (relieve, colores, formas y charms)", "price": "700", "priceCurrency": "MXN" }
           ]
         },
         "potentialAction": {
           "@type": "ReserveAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://wa.me/523326287517",
+            "urlTemplate": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true",
             "actionPlatform": ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"]
           }
         }
@@ -102,11 +110,11 @@
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": "¿Cuánto dura una cita?", "acceptedAnswer": { "@type": "Answer", "text": "Entre 1 y 2 horas, según la técnica y el nivel de detalle del diseño que elijas." } },
-          { "@type": "Question", "name": "¿Cuánto cuesta un set?", "acceptedAnswer": { "@type": "Answer", "text": "Cada diseño se cotiza según técnica, largo y detalle. Mándanos tu idea por WhatsApp y te damos el precio exacto antes de agendar." } },
+          { "@type": "Question", "name": "¿Cuánto cuesta un set?", "acceptedAnswer": { "@type": "Answer", "text": "Los diseños sencillos de un solo color cuestan alrededor de $300 MXN. Los diseños de autor, con relieve, varios colores, formas y charms, alrededor de $700 MXN. El precio exacto depende del diseño y te lo confirmamos antes de tu cita." } },
           { "@type": "Question", "name": "¿Puedo llevar mi propia inspiración?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Manda la foto por WhatsApp y vemos juntas cómo adaptarla a la forma y largo de tu uña." } },
           { "@type": "Question", "name": "¿Dónde atienden?", "acceptedAnswer": { "@type": "Answer", "text": "En estudio, Zona Zapopan, Guadalajara. Al confirmar tu cita te compartimos la ubicación exacta." } },
           { "@type": "Question", "name": "¿Cómo cuido mis uñas para que duren más?", "acceptedAnswer": { "@type": "Answer", "text": "Usa guantes al lavar trastes, aplica aceite de cutícula cada noche y evita usar las uñas como herramienta." } },
-          { "@type": "Question", "name": "¿Cómo reservo mi lugar?", "acceptedAnswer": { "@type": "Answer", "text": "Por WhatsApp o con el formulario de esta página. Confirmamos día, hora y diseño en el mismo chat." } }
+          { "@type": "Question", "name": "¿Cómo reservo mi lugar?", "acceptedAnswer": { "@type": "Answer", "text": "En línea con el botón Agendar cita: eliges día y hora libres y recibes la confirmación al instante. También por WhatsApp o con el formulario de esta página." } }
         ]
       }
     ]
@@ -119,6 +127,8 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <symbol id="i-whatsapp" viewBox="0 0 256 256"><path d="M152.58,145.23l23,11.48A24,24,0,0,1,152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155ZM232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-40,24a8,8,0,0,0-4.42-7.16l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88A40,40,0,0,0,192,152Z"/></symbol>
     <symbol id="i-instagram" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 256 256"><path d="M224,72a48.05,48.05,0,0,1-48-48,8,8,0,0,0-8-8H128a8,8,0,0,0-8,8V156a20,20,0,1,1-28.57-18.08A8,8,0,0,0,96,130.69V88a8,8,0,0,0-9.4-7.88C50.91,86.48,24,119.1,24,156a76,76,0,0,0,152,0V116.29A103.25,103.25,0,0,0,224,128a8,8,0,0,0,8-8V80A8,8,0,0,0,224,72Zm-8,39.64a87.19,87.19,0,0,1-43.33-16.15A8,8,0,0,0,160,102v54a60,60,0,0,1-120,0c0-25.9,16.64-49.13,40-57.6v27.67A36,36,0,1,0,136,156V32h24.5A64.14,64.14,0,0,0,216,87.5Z"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></symbol>
     <symbol id="i-pin" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
     <symbol id="i-quotes" viewBox="0 0 256 256"><path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z"/></symbol>
@@ -133,6 +143,7 @@
     <symbol id="i-heart" viewBox="0 0 256 256"><path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z"/></symbol>
     <symbol id="i-lightning" viewBox="0 0 256 256"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></symbol>
     <symbol id="i-chat" viewBox="0 0 256 256"><path d="M216,48H40A16,16,0,0,0,24,64V224a15.85,15.85,0,0,0,9.24,14.5A16.13,16.13,0,0,0,40,240a15.89,15.89,0,0,0,10.25-3.78.69.69,0,0,0,.13-.11L82.5,208H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48ZM40,224h0ZM216,192H82.5a16,16,0,0,0-10.3,3.75l-.12.11L40,224V64H216Z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 256 256"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z"/></symbol>
     <symbol id="i-calendar" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></symbol>
   </svg>
 
@@ -160,6 +171,12 @@
         <span class="loader__orb-halo"></span>
         <span class="loader__orb-core"></span>
         <svg class="loader__ring" viewBox="0 0 120 120" focusable="false">
+          <defs>
+            <linearGradient id="arc-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#5cff3f"/>
+              <stop offset="1" stop-color="#ff3dae"/>
+            </linearGradient>
+          </defs>
           <circle class="loader__ring-track" cx="60" cy="60" r="56"/>
           <circle class="loader__ring-arc" id="loader-arc" cx="60" cy="60" r="56" pathLength="100"/>
         </svg>
@@ -192,15 +209,16 @@
         <ul class="nav__list">
           <li><a class="nav__link" href="#servicios">Servicios</a></li>
           <li><a class="nav__link" href="#portafolio">Portafolio</a></li>
+          <li><a class="nav__link" href="#precios">Precios</a></li>
           <li><a class="nav__link" href="#proceso">Proceso</a></li>
           <li><a class="nav__link" href="#opiniones">Opiniones</a></li>
           <li><a class="nav__link" href="#preguntas">FAQ</a></li>
         </ul>
       </nav>
 
-      <a class="btn btn--neon btn--sm header__cta" data-magnetic href="#contacto">
+      <a class="btn btn--neon btn--sm header__cta" data-magnetic data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
         <span class="btn__label">Agendar cita</span>
-        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
       </a>
 
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
@@ -217,17 +235,27 @@
       <ol class="menu__list">
         <li><a class="menu__link" href="#servicios"><span class="menu__num">01</span>Servicios</a></li>
         <li><a class="menu__link" href="#portafolio"><span class="menu__num">02</span>Portafolio</a></li>
-        <li><a class="menu__link" href="#proceso"><span class="menu__num">03</span>Proceso</a></li>
-        <li><a class="menu__link" href="#opiniones"><span class="menu__num">04</span>Opiniones</a></li>
-        <li><a class="menu__link" href="#preguntas"><span class="menu__num">05</span>Preguntas</a></li>
-        <li><a class="menu__link" href="#contacto"><span class="menu__num">06</span>Contacto</a></li>
+        <li><a class="menu__link" href="#precios"><span class="menu__num">03</span>Precios</a></li>
+        <li><a class="menu__link" href="#proceso"><span class="menu__num">04</span>Proceso</a></li>
+        <li><a class="menu__link" href="#opiniones"><span class="menu__num">05</span>Opiniones</a></li>
+        <li><a class="menu__link" href="#preguntas"><span class="menu__num">06</span>Preguntas</a></li>
+        <li><a class="menu__link" href="#contacto"><span class="menu__num">07</span>Contacto</a></li>
       </ol>
     </nav>
     <div class="menu__foot">
-      <a class="btn btn--neon btn--block" href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer">
+      <a class="btn btn--pink btn--block" data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
+        <span class="btn__label">Agendar en línea</span>
+      </a>
+      <a class="btn btn--glass btn--block" href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer">
         <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
         <span class="btn__label">Escribir por WhatsApp</span>
       </a>
+      <ul class="socials socials--center" aria-label="Redes sociales">
+        <li><a class="socials__link socials__link--ig" href="https://www.instagram.com/garritasdehumo" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Garritas de Humo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg></a></li>
+        <li><a class="socials__link socials__link--tt" href="https://www.tiktok.com/@chicadehumo777" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Garritas de Humo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></a></li>
+        <li><a class="socials__link socials__link--fb" href="https://www.facebook.com/share/1dQjCNcZir/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Garritas de Humo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg></a></li>
+      </ul>
       <p class="menu__meta">Zona Zapopan, GDL · Solo con cita</p>
     </div>
   </div>
@@ -245,13 +273,14 @@
         <span class="hero__orb-aura"></span>
         <span class="hero__orb-halo"></span>
         <span class="hero__orb-core"></span>
+        <span class="hero__orb-pink"></span>
       </div>
       <div class="hero__grid-lines" aria-hidden="true"></div>
 
       <div class="container hero__inner">
         <div class="hero__copy">
           <p class="chip hero__chip" data-hero-in>
-            <span class="chip__dot" aria-hidden="true"></span>
+            <span class="chip__dot chip__dot--pink" aria-hidden="true"></span>
             Agenda abierta · lugares limitados esta semana
           </p>
 
@@ -260,7 +289,7 @@
             <span class="hero__line" data-hero-line><span>Uñas que</span></span>
             <span class="hero__line" data-hero-line>
               <span class="hero__cycle" data-cycle="se notan.|enamoran.|brillan.|se presumen.">
-                <em class="hero__cycle-word">se notan.</em>
+                <em class="hero__cycle-word pink">se notan.</em>
               </span>
             </span>
           </h1>
@@ -268,8 +297,8 @@
           <p class="hero__lead" data-hero-in>Soft gel, gelish, rubber y press on con diseño hecho para ti. Técnica precisa, materiales profesionales y el trato de tu mejor amiga, en cada cita.</p>
 
           <div class="hero__cta" data-hero-in>
-            <a class="btn btn--neon btn--lg" data-magnetic href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20quiero%20mi%20cita.%20%C2%BFQu%C3%A9%20horarios%20tienes%3F" target="_blank" rel="noopener noreferrer">
-              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
+            <a class="btn btn--pink btn--lg" data-magnetic data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
               <span class="btn__label">Quiero mi cita</span>
             </a>
             <a class="btn btn--glass btn--lg" href="#portafolio">
@@ -352,7 +381,7 @@
         <p class="eyebrow" data-reveal><span class="eyebrow__idx">01</span>Nuestra filosofía</p>
         <h2 class="visually-hidden" id="manifesto-title">Nuestra filosofía</h2>
         <p class="manifesto__text" data-scrub-words>
-          No hacemos uñas en serie. Te escuchamos, entendemos tu estilo y lo convertimos en un set <em>con tu firma</em>: cada trazo medido, cada capa curada a la perfección, para que lo presumas semanas después.
+          No hacemos uñas en serie. Te escuchamos, entendemos tu estilo y lo convertimos en un set <em class="pink">con tu firma</em>: cada trazo medido, cada capa curada a la perfección, para que lo presumas semanas después.
         </p>
       </div>
     </section>
@@ -372,7 +401,7 @@
           <article class="spec" data-reveal data-spotlight>
             <div class="spec__top">
               <span class="spec__idx">T—01</span>
-              <span class="spec__badge">Más pedido</span>
+              <span class="spec__badge spec__badge--pink">Más pedido</span>
             </div>
             <div class="spec__visual spec__visual--softgel" aria-hidden="true"><span></span><span></span><span></span></div>
             <h3 class="spec__title">Soft Gel</h3>
@@ -433,7 +462,7 @@
         </div>
 
         <div class="services__foot" data-reveal>
-          <p class="services__note"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg> Cada diseño se cotiza según técnica, largo y detalle. Precio claro antes de agendar.</p>
+          <p class="services__note"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg> Diseños desde $300 MXN. El precio exacto depende del detalle y te lo confirmamos antes de agendar. <a class="link services__prices" href="#precios">Ver precios</a></p>
           <a class="btn btn--neon" data-magnetic href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20quiero%20cotizar%20mi%20dise%C3%B1o.%20Te%20mando%20mi%20inspiraci%C3%B3n." target="_blank" rel="noopener noreferrer">
             <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
             <span class="btn__label">Quiero cotizar mi diseño</span>
@@ -445,22 +474,22 @@
     <!-- ====================================================================
          04 · PORTAFOLIO · galería horizontal fijada al scroll (desktop)
          ==================================================================== -->
-    <section class="showcase" id="portafolio" aria-labelledby="showcase-title">
-      <div class="showcase__sticky">
-        <div class="container showcase__head">
+    <section class="hscroll showcase" id="portafolio" aria-labelledby="showcase-title" data-hscroll>
+      <div class="hscroll__sticky">
+        <div class="container hscroll__head">
           <div>
             <p class="eyebrow" data-reveal><span class="eyebrow__idx">03</span>Portafolio</p>
-            <h2 class="sec-title" id="showcase-title" data-split>Trabajo real. <em>Sin filtros.</em></h2>
+            <h2 class="sec-title" id="showcase-title" data-split>Trabajo real. <em class="pink">Sin filtros.</em></h2>
           </div>
-          <div class="showcase__meta" data-reveal>
-            <p class="showcase__counter" aria-hidden="true"><span id="showcase-num">01</span> / 05</p>
-            <div class="showcase__bar" aria-hidden="true"><i id="showcase-bar"></i></div>
+          <div class="hscroll__meta" data-reveal>
+            <p class="hscroll__counter" aria-hidden="true"><span data-hs-num>01</span> / 05</p>
+            <div class="hscroll__bar" aria-hidden="true"><i data-hs-bar></i></div>
           </div>
         </div>
 
-        <div class="showcase__viewport">
-          <ul class="showcase__track" id="showcase-track">
-            <li class="shot shot--tall">
+        <div class="hscroll__viewport">
+          <ul class="hscroll__track">
+            <li class="shot shot--tall" data-hs-item>
               <figure>
                 <div class="shot__media" data-tilt>
                   <img src="img/portafolio-03.jpg" width="720" height="1280" loading="lazy" decoding="async" alt="Uñas cuadradas largas en negro, blanco y verde lima con relieve 3D y pedrería plateada">
@@ -468,7 +497,7 @@
                 <figcaption class="shot__cap"><span class="shot__n">01</span><span class="shot__t">Neon 3D</span><span class="shot__s">Rubber · relieve · pedrería</span></figcaption>
               </figure>
             </li>
-            <li class="shot shot--video">
+            <li class="shot shot--video" data-hs-item>
               <figure>
                 <div class="shot__media" data-tilt>
                   <video src="img/portafolio-reel-01.mp4#t=0.1" muted loop playsinline preload="metadata" aria-label="Video sin audio del proceso de un set de uñas de Garritas de Humo" data-inview-play></video>
@@ -477,7 +506,7 @@
                 <figcaption class="shot__cap"><span class="shot__n">02</span><span class="shot__t">En proceso</span><span class="shot__s">Así se construye un set</span></figcaption>
               </figure>
             </li>
-            <li class="shot">
+            <li class="shot" data-hs-item>
               <figure>
                 <div class="shot__media" data-tilt>
                   <img src="img/hero-nails.jpg" width="720" height="1280" loading="lazy" decoding="async" alt="Uñas almendradas con french multicolor, cow print, tiger print y trazos abstractos">
@@ -485,7 +514,7 @@
                 <figcaption class="shot__cap"><span class="shot__n">03</span><span class="shot__t">Mix &amp; Match</span><span class="shot__s">French de colores · animal print</span></figcaption>
               </figure>
             </li>
-            <li class="shot shot--tall">
+            <li class="shot shot--tall" data-hs-item>
               <figure>
                 <div class="shot__media" data-tilt>
                   <img src="img/portafolio-01.jpg" width="720" height="1280" loading="lazy" decoding="async" alt="Uñas almendradas extra largas en tono nude con degradado y acabado brillante">
@@ -493,7 +522,7 @@
                 <figcaption class="shot__cap"><span class="shot__n">04</span><span class="shot__t">Nude Glass</span><span class="shot__s">Soft gel · almendra XL</span></figcaption>
               </figure>
             </li>
-            <li class="shot shot--video">
+            <li class="shot shot--video" data-hs-item>
               <figure>
                 <div class="shot__media" data-tilt>
                   <video src="img/portafolio-reel-02.mp4#t=0.1" muted loop playsinline preload="metadata" aria-label="Video sin audio de un set terminado de Garritas de Humo" data-inview-play></video>
@@ -506,8 +535,8 @@
               <div class="shot__ctabox">
                 <span class="shot__ctaorb" aria-hidden="true"></span>
                 <p class="shot__ctatitle">¿Te imaginas un set así <em>en tus manos?</em></p>
-                <a class="btn btn--neon" data-magnetic href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20vi%20tu%20portafolio%20y%20quiero%20un%20set%20as%C3%AD." target="_blank" rel="noopener noreferrer">
-                  <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
+                <a class="btn btn--pink" data-magnetic data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
                   <span class="btn__label">Quiero un set así</span>
                 </a>
                 <a class="link" href="https://www.instagram.com/garritasdehumo" target="_blank" rel="noopener noreferrer">
@@ -550,16 +579,90 @@
     </section>
 
     <!-- ====================================================================
+         PRECIOS · dos niveles según el detalle del diseño
+         ==================================================================== -->
+    <section class="section pricing" id="precios" aria-labelledby="pricing-title">
+      <div class="container">
+        <header class="sec-head sec-head--center">
+          <p class="eyebrow" data-reveal><span class="eyebrow__idx">04</span>Precios</p>
+          <h2 class="sec-title" id="pricing-title" data-split>Precios claros. <em>Cero sorpresas.</em></h2>
+          <p class="sec-lead" data-reveal>Pagas según el detalle de tu diseño, no por extras escondidos. Elige el nivel que va contigo y te confirmamos el precio exacto antes de tu cita.</p>
+        </header>
+
+        <div class="pricing__grid">
+          <article class="price" data-reveal data-spotlight aria-labelledby="price-esencial">
+            <figure class="price__media">
+              <img src="img/portafolio-01.jpg" width="720" height="1280" loading="lazy" decoding="async" alt="Ejemplo de diseño esencial: uñas almendradas largas en un solo tono nude con acabado brillante">
+              <figcaption class="price__chip">Ejemplo real · un solo color</figcaption>
+            </figure>
+            <div class="price__body">
+              <p class="price__tier">Nivel 01</p>
+              <h3 class="price__name" id="price-esencial">Diseño esencial</h3>
+              <p class="price__desc">Elegancia limpia en un solo color. Perfecto para el día a día, la oficina o cuando quieres verte impecable sin complicarte.</p>
+              <p class="price__amount">
+                <span class="price__label">Alrededor de</span>
+                <span class="price__value"><span data-count="300" data-prefix="$">$300</span><small>MXN</small></span>
+              </p>
+              <ul class="price__list">
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Un solo color a tu elección</li>
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Forma y largo a tu gusto</li>
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Acabado pulido y duradero</li>
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Ideal para tu rutina diaria</li>
+              </ul>
+              <a class="btn btn--neon btn--block" data-magnetic data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
+                <span class="btn__label">Quiero mi diseño esencial</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="price price--featured" data-reveal style="--d:1" data-spotlight aria-labelledby="price-autor">
+            <span class="price__ribbon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Para presumir</span>
+            <figure class="price__media">
+              <img src="img/portafolio-03.jpg" width="720" height="1280" loading="lazy" decoding="async" alt="Ejemplo de diseño de autor: uñas en negro, blanco y verde lima con relieve 3D y pedrería plateada">
+              <figcaption class="price__chip">Ejemplo real · relieve 3D y charms</figcaption>
+            </figure>
+            <div class="price__body">
+              <p class="price__tier">Nivel 02</p>
+              <h3 class="price__name" id="price-autor">Diseño de <em>autor</em></h3>
+              <p class="price__desc">Tu set convertido en pieza única: relieves, mezcla de colores, formas y charms. Para eventos, fechas especiales o simplemente para que todas te pregunten dónde te las hiciste.</p>
+              <p class="price__amount">
+                <span class="price__label">Alrededor de</span>
+                <span class="price__value"><span data-count="700" data-prefix="$">$700</span><small>MXN</small></span>
+              </p>
+              <ul class="price__list">
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Relieves y efectos 3D</li>
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Varios colores y formas</li>
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Charms y pedrería</li>
+                <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Diseño 100% personalizado con tu inspiración</li>
+              </ul>
+              <a class="btn btn--pink btn--block" data-magnetic data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
+                <span class="btn__label">Quiero mi diseño de autor</span>
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <ul class="pricing__assure" data-reveal>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg><span><b>Precio confirmado antes de tu cita.</b> El monto final depende del largo, la técnica y el detalle.</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span><b>Aceptamos efectivo y transferencia.</b> Sin cargos extra por reservar en línea.</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><span><b>¿Tu idea está entre los dos?</b> <a class="link" href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20quiero%20cotizar%20mi%20dise%C3%B1o." target="_blank" rel="noopener noreferrer">Cotízala por WhatsApp</a></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================================================================
          06 · PROCESO · línea de tiempo que se llena con el scroll
          ==================================================================== -->
     <section class="section process" id="proceso" aria-labelledby="process-title">
       <div class="container process__inner">
         <header class="sec-head process__head">
-          <p class="eyebrow" data-reveal><span class="eyebrow__idx">04</span>Proceso</p>
-          <h2 class="sec-title" id="process-title" data-split>De la idea a tus manos <em>en 4 pasos.</em></h2>
-          <p class="sec-lead" data-reveal>Sin formularios eternos ni llamadas. Todo pasa en un chat de WhatsApp, a tu ritmo.</p>
-          <a class="btn btn--neon process__cta" data-magnetic data-reveal href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20estoy%20lista%20para%20agendar." target="_blank" rel="noopener noreferrer">
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
+          <p class="eyebrow" data-reveal><span class="eyebrow__idx">05</span>Proceso</p>
+          <h2 class="sec-title" id="process-title" data-split>De la idea a tus manos <em class="pink">en 4 pasos.</em></h2>
+          <p class="sec-lead" data-reveal>Sin llamadas ni esperas: eliges tu horario en línea en un minuto, desde aquí mismo.</p>
+          <a class="btn btn--pink process__cta" data-magnetic data-reveal data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
             <span class="btn__label">Estoy lista, quiero agendar</span>
           </a>
         </header>
@@ -574,14 +677,14 @@
           <li class="timeline__step" data-reveal>
             <span class="timeline__node" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-chat"/></svg></span>
             <p class="timeline__k">Paso 02</p>
-            <h3 class="timeline__t">Escríbenos</h3>
-            <p class="timeline__d">Mándanos tu inspiración por WhatsApp. Te recomendamos la técnica ideal y te damos el precio exacto.</p>
+            <h3 class="timeline__t">Agenda en línea</h3>
+            <p class="timeline__d">Toca «Agendar cita», elige día y hora libres en el calendario y deja tus datos. Listo en un minuto.</p>
           </li>
           <li class="timeline__step" data-reveal>
             <span class="timeline__node" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-calendar"/></svg></span>
             <p class="timeline__k">Paso 03</p>
-            <h3 class="timeline__t">Aparta tu lugar</h3>
-            <p class="timeline__d">Eliges día y hora. Te confirmamos al momento y te compartimos la ubicación del estudio.</p>
+            <h3 class="timeline__t">Recibe tu confirmación</h3>
+            <p class="timeline__d">Te llega un correo con fecha, hora y ubicación del estudio. ¿Dudas sobre tu diseño? Escríbenos por WhatsApp.</p>
           </li>
           <li class="timeline__step" data-reveal>
             <span class="timeline__node" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-sparkle"/></svg></span>
@@ -594,50 +697,80 @@
     </section>
 
     <!-- ====================================================================
-         07 · DIFERENCIALES · bento
+         07 · LA EXPERIENCIA · galería horizontal fijada al scroll
          ==================================================================== -->
-    <section class="section why" aria-labelledby="why-title">
-      <div class="container">
-        <header class="sec-head sec-head--center">
-          <p class="eyebrow" data-reveal><span class="eyebrow__idx">05</span>La experiencia</p>
-          <h2 class="sec-title" id="why-title" data-split>Lo que hace que <em>vuelvas.</em></h2>
-        </header>
+    <section class="hscroll why" id="experiencia" aria-labelledby="why-title" data-hscroll>
+      <div class="hscroll__sticky">
+        <div class="container hscroll__head">
+          <div>
+            <p class="eyebrow" data-reveal><span class="eyebrow__idx">06</span>La experiencia</p>
+            <h2 class="sec-title" id="why-title" data-split>Lo que hace que <em class="pink">vuelvas.</em></h2>
+          </div>
+          <div class="hscroll__meta" data-reveal>
+            <p class="hscroll__counter" aria-hidden="true"><span data-hs-num>01</span> / 05</p>
+            <div class="hscroll__bar" aria-hidden="true"><i data-hs-bar></i></div>
+          </div>
+        </div>
 
-        <div class="bento">
-          <article class="tile tile--hero" data-reveal data-spotlight>
-            <div class="tile__brand" aria-hidden="true">
-              <img src="img/logo.jpg" width="1600" height="1600" loading="lazy" decoding="async" alt="">
-            </div>
-            <div class="tile__body">
-              <svg class="icon tile__icon" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg>
-              <h3 class="tile__title">Tu nail artist <em>de confianza</em></h3>
-              <p class="tile__text">No es solo una cita: es un rato para ti, con alguien que te escucha, te aconseja con honestidad y recuerda cómo te gustan.</p>
-            </div>
-          </article>
+        <div class="hscroll__viewport">
+          <ul class="hscroll__track">
+            <li class="panel panel--brand panel--pink" data-hs-item data-spotlight>
+              <div class="panel__brand" aria-hidden="true">
+                <img src="img/logo.jpg" width="1600" height="1600" loading="lazy" decoding="async" alt="">
+              </div>
+              <div class="panel__body">
+                <svg class="icon panel__icon" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg>
+                <h3 class="panel__title">Tu nail artist <em>de confianza</em></h3>
+                <p class="panel__text">No es solo una cita: es un rato para ti, con alguien que te escucha, te aconseja con honestidad y recuerda cómo te gustan.</p>
+              </div>
+            </li>
 
-          <article class="tile" data-reveal style="--d:1" data-spotlight>
-            <svg class="icon tile__icon" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg>
-            <h3 class="tile__title">Diseño de autor</h3>
-            <p class="tile__text">Animal print, 3D, french de color, pedrería. Si lo imaginas, lo diseñamos para tu forma de uña.</p>
-          </article>
+            <li class="panel" data-hs-item data-spotlight>
+              <span class="panel__glow" aria-hidden="true"></span>
+              <span class="panel__num" aria-hidden="true">01</span>
+              <svg class="icon panel__icon" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg>
+              <h3 class="panel__title">Diseño de autor</h3>
+              <p class="panel__text">Animal print, 3D, french de color, pedrería. Si lo imaginas, lo diseñamos para tu forma de uña.</p>
+              <p class="panel__tag">3D · pedrería · animal print</p>
+            </li>
 
-          <article class="tile" data-reveal style="--d:2" data-spotlight>
-            <svg class="icon tile__icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg>
-            <h3 class="tile__title">Cuidamos tu uña natural</h3>
-            <p class="tile__text">Preparación y retiro correctos para que tus uñas sigan sanas set tras set.</p>
-          </article>
+            <li class="panel panel--pink" data-hs-item data-spotlight>
+              <span class="panel__glow" aria-hidden="true"></span>
+              <span class="panel__num" aria-hidden="true">02</span>
+              <svg class="icon panel__icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg>
+              <h3 class="panel__title">Cuidamos tu uña natural</h3>
+              <p class="panel__text">Preparación y retiro correctos para que tus uñas sigan sanas set tras set.</p>
+              <p class="panel__tag">Preparación · retiro seguro</p>
+            </li>
 
-          <article class="tile" data-reveal style="--d:1" data-spotlight>
-            <svg class="icon tile__icon" aria-hidden="true" focusable="false"><use href="#i-lightning"/></svg>
-            <h3 class="tile__title">Respuesta el mismo día</h3>
-            <p class="tile__text">Escribes, te contestamos. Sin esperar días para saber si hay lugar.</p>
-          </article>
+            <li class="panel" data-hs-item data-spotlight>
+              <span class="panel__glow" aria-hidden="true"></span>
+              <span class="panel__num" aria-hidden="true">03</span>
+              <svg class="icon panel__icon" aria-hidden="true" focusable="false"><use href="#i-lightning"/></svg>
+              <h3 class="panel__title">Respuesta el mismo día</h3>
+              <p class="panel__text">Escribes, te contestamos. Sin esperar días para saber si hay lugar.</p>
+              <p class="panel__tag">WhatsApp directo</p>
+            </li>
 
-          <article class="tile tile--wide" data-reveal style="--d:2" data-spotlight>
-            <svg class="icon tile__icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>
-            <h3 class="tile__title">Solo con cita, sin prisas</h3>
-            <p class="tile__text">Cada lugar está reservado solo para ti. Nada de salas de espera ni trabajo a las carreras: el tiempo que tu set necesita.</p>
-          </article>
+            <li class="panel panel--pink" data-hs-item data-spotlight>
+              <span class="panel__glow" aria-hidden="true"></span>
+              <span class="panel__num" aria-hidden="true">04</span>
+              <svg class="icon panel__icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>
+              <h3 class="panel__title">Solo con cita, sin prisas</h3>
+              <p class="panel__text">Cada lugar está reservado solo para ti. Nada de salas de espera ni trabajo a las carreras.</p>
+              <p class="panel__tag">Tu tiempo, solo tuyo</p>
+            </li>
+
+            <li class="panel panel--cta" data-spotlight>
+              <span class="panel__glow" aria-hidden="true"></span>
+              <h3 class="panel__title">¿Lista para vivirlo <em>en persona?</em></h3>
+              <p class="panel__text">Aparta tu lugar hoy y llega a una cita pensada solo para ti.</p>
+              <a class="btn btn--neon" data-magnetic data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
+                <span class="btn__label">Quiero vivir la experiencia</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -649,8 +782,8 @@
     <section class="section reviews" id="opiniones" aria-labelledby="reviews-title">
       <div class="container">
         <header class="sec-head sec-head--center">
-          <p class="eyebrow" data-reveal><span class="eyebrow__idx">06</span>Opiniones</p>
-          <h2 class="sec-title" id="reviews-title" data-split>Clientas que <em>ya no se van.</em></h2>
+          <p class="eyebrow" data-reveal><span class="eyebrow__idx">07</span>Opiniones</p>
+          <h2 class="sec-title" id="reviews-title" data-split>Clientas que <em class="pink">ya no se van.</em></h2>
         </header>
       </div>
 
@@ -686,7 +819,7 @@
     <section class="section faq" id="preguntas" aria-labelledby="faq-title">
       <div class="container faq__inner">
         <header class="sec-head faq__head">
-          <p class="eyebrow" data-reveal><span class="eyebrow__idx">07</span>Preguntas frecuentes</p>
+          <p class="eyebrow" data-reveal><span class="eyebrow__idx">08</span>Preguntas frecuentes</p>
           <h2 class="sec-title" id="faq-title" data-split>Resolvemos tus dudas <em>antes de que preguntes.</em></h2>
           <p class="sec-lead" data-reveal>¿No ves la tuya? Escríbenos y te respondemos hoy.</p>
           <a class="link" data-reveal href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20tengo%20una%20pregunta." target="_blank" rel="noopener noreferrer">
@@ -702,7 +835,7 @@
           </details>
           <details class="qa" name="faq">
             <summary class="qa__q">¿Cuánto cuesta un set?<span class="qa__icon" aria-hidden="true"></span></summary>
-            <div class="qa__a"><p>Cada diseño se cotiza según técnica, largo y detalle. Mándanos tu idea por WhatsApp y te damos el precio exacto antes de agendar, sin sorpresas.</p></div>
+            <div class="qa__a"><p>Un diseño esencial de un solo color sale alrededor de $300 MXN, y un diseño de autor con relieve, varios colores, formas y charms, alrededor de $700 MXN. El precio exacto depende de tu diseño y te lo confirmamos antes de tu cita, sin sorpresas.</p></div>
           </details>
           <details class="qa" name="faq">
             <summary class="qa__q">¿Puedo llevar mi propia inspiración?<span class="qa__icon" aria-hidden="true"></span></summary>
@@ -718,7 +851,7 @@
           </details>
           <details class="qa" name="faq">
             <summary class="qa__q">¿Cómo reservo mi lugar?<span class="qa__icon" aria-hidden="true"></span></summary>
-            <div class="qa__a"><p>Por WhatsApp o con el formulario de abajo. Confirmamos día, hora y diseño en el mismo chat. Entre semana los lugares vuelan, así que conviene escribir con tiempo.</p></div>
+            <div class="qa__a"><p>En línea con el botón «Agendar cita»: eliges día y hora libres y recibes la confirmación al instante. También puedes escribirnos por WhatsApp o con el formulario de abajo. Entre semana los lugares vuelan, así que conviene escribir con tiempo.</p></div>
           </details>
         </div>
       </div>
@@ -731,22 +864,39 @@
       <div class="contact__orb" aria-hidden="true"></div>
       <div class="container contact__inner">
         <div class="contact__copy">
-          <p class="eyebrow" data-reveal><span class="eyebrow__idx">08</span>Agenda tu cita</p>
-          <h2 class="contact__title" id="contact-title" data-split>Tu próximo set <em>empieza con un mensaje.</em></h2>
-          <p class="sec-lead" data-reveal>Cuéntanos qué tienes en mente. Al enviar, se abre WhatsApp con tu mensaje listo: solo confírmalo y te respondemos el mismo día.</p>
+          <p class="eyebrow" data-reveal><span class="eyebrow__idx">09</span>Agenda tu cita</p>
+          <h2 class="contact__title" id="contact-title" data-split>Tu próximo set <em class="pink">empieza con un mensaje.</em></h2>
+          <p class="sec-lead" data-reveal>Agenda en línea en un minuto, o cuéntanos tu idea y te respondemos por WhatsApp el mismo día.</p>
+
+          <div class="book-card" data-reveal data-spotlight>
+            <div class="book-card__top">
+              <span class="book-card__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span>
+              <div>
+                <p class="book-card__title">Agenda en línea en 1 minuto</p>
+                <p class="book-card__text">Elige día y hora libres en nuestro calendario y recibe tu confirmación al instante.</p>
+              </div>
+            </div>
+            <a class="btn btn--pink btn--block" data-magnetic data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
+              <span class="btn__label">Ver horarios disponibles</span>
+            </a>
+            <p class="book-card__or"><span>o escríbenos con el formulario</span></p>
+          </div>
 
           <ul class="contact__list" data-reveal>
             <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span>Estudio en Zona Zapopan, Guadalajara</span></li>
             <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><span>Solo con cita · respuesta el mismo día</span></li>
             <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg><a href="https://wa.me/523326287517" target="_blank" rel="noopener noreferrer">33 2628 7517</a></li>
             <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg><a href="https://www.instagram.com/garritasdehumo" target="_blank" rel="noopener noreferrer">@garritasdehumo</a></li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg><a href="https://www.tiktok.com/@chicadehumo777" target="_blank" rel="noopener noreferrer">@chicadehumo777</a></li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg><a href="https://www.facebook.com/share/1dQjCNcZir/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Garritas de Humo en Facebook</a></li>
           </ul>
         </div>
 
         <form class="form" id="contact-form" novalidate data-reveal style="--d:1" aria-describedby="form-fine">
           <div class="form__head">
             <span class="form__dot" aria-hidden="true"></span>
-            <p class="form__title">Solicitud de cita</p>
+            <p class="form__title">Mensaje directo por WhatsApp</p>
             <span class="form__step" aria-hidden="true">≈ 30 s</span>
           </div>
 
@@ -787,7 +937,7 @@
 
           <button class="btn btn--neon btn--lg btn--block" type="submit" data-magnetic>
             <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
-            <span class="btn__label">Enviar y agendar por WhatsApp</span>
+            <span class="btn__label">Enviar mi mensaje por WhatsApp</span>
           </button>
           <p class="form__fine" id="form-fine">Tus datos solo se usan para responderte por WhatsApp.</p>
 
@@ -810,6 +960,11 @@
         <div>
           <p class="footer__name">Garritas <em>de Humo</em></p>
           <p class="footer__tag">Tu nail artist de confianza.</p>
+          <ul class="socials footer__socials" aria-label="Redes sociales">
+        <li><a class="socials__link socials__link--ig" href="https://www.instagram.com/garritasdehumo" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Garritas de Humo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg></a></li>
+        <li><a class="socials__link socials__link--tt" href="https://www.tiktok.com/@chicadehumo777" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Garritas de Humo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></a></li>
+        <li><a class="socials__link socials__link--fb" href="https://www.facebook.com/share/1dQjCNcZir/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Garritas de Humo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg></a></li>
+      </ul>
         </div>
       </div>
 
@@ -818,9 +973,11 @@
         <ul>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#portafolio">Portafolio</a></li>
+          <li><a href="#precios">Precios</a></li>
           <li><a href="#proceso">Proceso</a></li>
           <li><a href="#opiniones">Opiniones</a></li>
           <li><a href="#preguntas">Preguntas</a></li>
+          <li><a class="footer__book" data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>Agendar en línea</a></li>
         </ul>
       </nav>
 
@@ -829,6 +986,8 @@
         <ul>
           <li><a href="https://wa.me/523326287517" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>33 2628 7517</a></li>
           <li><a href="https://www.instagram.com/garritasdehumo" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg>@garritasdehumo</a></li>
+          <li><a href="https://www.tiktok.com/@chicadehumo777" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>@chicadehumo777</a></li>
+          <li><a href="https://www.facebook.com/share/1dQjCNcZir/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg>Facebook</a></li>
           <li><span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Zona Zapopan, Guadalajara, Jalisco</span></li>
         </ul>
       </address>
@@ -842,9 +1001,137 @@
     </div>
   </footer>
 
+  <!-- Botón flotante de agenda en línea -->
+  <a class="fab-book" data-booking href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">
+    <span class="fab-book__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span>
+    <span class="fab-book__label">Agendar</span>
+  </a>
+
+  <!-- ======================================================================
+       AGENDA EN LÍNEA · modal con Google Calendar (Appointment Scheduling)
+       El iframe se carga solo la primera vez que se abre el modal.
+       ====================================================================== -->
+  <dialog class="booking" id="booking" aria-labelledby="booking-title" data-lenis-prevent>
+    <div class="booking__panel">
+      <button class="booking__close" type="button" data-booking-close aria-label="Cerrar agenda" autofocus>
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>
+      </button>
+
+      <aside class="booking__aside">
+        <span class="booking__glow" aria-hidden="true"></span>
+        <p class="booking__brand"><span class="brand__orb" aria-hidden="true"></span>Garritas <em>de Humo</em></p>
+        <p class="booking__eyebrow"><span class="chip__dot chip__dot--pink" aria-hidden="true"></span>Agenda en línea</p>
+        <h2 class="booking__title" id="booking-title">Aparta tu lugar <em>en 1 minuto.</em></h2>
+
+        <ol class="booking__steps">
+          <li style="--i:0" class="is-active"><span class="booking__n">01</span><div><b>Conoce los pasos</b><small>Te toma 30 segundos.</small></div></li>
+          <li style="--i:1"><span class="booking__n">02</span><div><b>Elige día y hora</b><small>Solo verás horarios libres.</small></div></li>
+          <li style="--i:2"><span class="booking__n">03</span><div><b>Confirma tu cita</b><small>Te llega al correo al instante.</small></div></li>
+        </ol>
+
+        <ul class="booking__facts">
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Duración según la técnica que elijas</li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Estudio en Zona Zapopan, GDL</li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Diseño a tu medida, cotizado antes</li>
+        </ul>
+
+        <a class="link booking__wa" href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
+          ¿Prefieres WhatsApp? Escríbenos
+        </a>
+      </aside>
+
+      <div class="booking__main">
+        <div class="booking__bar">
+          <button class="booking__back" type="button" data-booking-back aria-label="Volver a los pasos" title="Volver a los pasos">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
+          </button>
+          <span class="booking__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="booking__url"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>Agenda segura · Google Calendar</span>
+          <a class="booking__ext" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer" aria-label="Abrir la agenda en una pestaña nueva" title="Abrir en una pestaña nueva">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-out"/></svg>
+          </a>
+        </div>
+
+        <div class="booking__stage">
+          <!-- Vista 1: guía. Se lee mientras la agenda carga detrás. -->
+          <section class="booking__intro" aria-labelledby="booking-intro-title">
+            <div class="booking__intro-head">
+              <p class="booking__intro-k">Guía rápida · 30 segundos</p>
+              <h3 class="booking__intro-title" id="booking-intro-title">Así agendas <em>tu cita</em></h3>
+            </div>
+
+            <ol class="guide">
+              <li class="guide__step" style="--i:0">
+                <span class="guide__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span>
+                <div>
+                  <p class="guide__n">Paso 1</p>
+                  <h4 class="guide__t">Elige el día</h4>
+                  <p class="guide__d">En el calendario, los días resaltados tienen lugares libres. Los tachados ya están llenos o no hay servicio.</p>
+                </div>
+              </li>
+              <li class="guide__step" style="--i:1">
+                <span class="guide__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span>
+                <div>
+                  <p class="guide__n">Paso 2</p>
+                  <h4 class="guide__t">Escoge tu horario</h4>
+                  <p class="guide__d">Verás las horas disponibles de ese día. Toca la que mejor te acomode: ese lugar se aparta solo para ti.</p>
+                </div>
+              </li>
+              <li class="guide__step" style="--i:2">
+                <span class="guide__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg></span>
+                <div>
+                  <p class="guide__n">Paso 3</p>
+                  <h4 class="guide__t">Completa tus datos</h4>
+                  <p class="guide__d">Escribe tu nombre y correo para confirmarte. Si ya tienes una idea de diseño, cuéntanosla después por WhatsApp.</p>
+                </div>
+              </li>
+              <li class="guide__step" style="--i:3">
+                <span class="guide__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span>
+                <div>
+                  <p class="guide__n">Paso 4</p>
+                  <h4 class="guide__t">Recibe tu confirmación</h4>
+                  <p class="guide__d">Te llega un correo con fecha, hora y ubicación. ¿Necesitas cambiarla? Escríbenos y la movemos.</p>
+                </div>
+              </li>
+            </ol>
+
+            <div class="booking__intro-foot">
+              <div class="booking__status" aria-live="polite">
+                <span class="booking__status-dot" aria-hidden="true"></span>
+                <span class="booking__status-text">Preparando tu agenda…</span>
+                <span class="booking__status-bar" aria-hidden="true"><i></i></span>
+              </div>
+              <button class="btn btn--pink btn--lg booking__go" type="button" data-booking-go>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
+                <span class="btn__label">Ver horarios disponibles</span>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
+              </button>
+            </div>
+          </section>
+
+          <!-- Vista 2: agenda de Google (se carga en segundo plano) -->
+          <div class="booking__frame">
+            <div class="booking__loading" role="status">
+              <div class="booking__skeleton" aria-hidden="true">
+                <div class="booking__sk-cal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="booking__sk-slots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+              <div class="booking__spinner" aria-hidden="true"><span></span></div>
+              <p class="booking__loading-text">Conectando con Google Calendar…</p>
+              <span class="booking__load-bar" aria-hidden="true"><i></i></span>
+              <p class="booking__slow" hidden>¿Tarda demasiado? <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" target="_blank" rel="noopener noreferrer">Abre la agenda aquí</a>.</p>
+            </div>
+            <iframe id="booking-frame" title="Agenda de citas de Garritas de Humo" data-src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ16v40CuqVwQ_2MDGLl5-512qa6xLhF_JQ_0ltY7L6SDhaR7D7UCs_vwZxp20cjQ7-iEjnnORlY?gv=true" tabindex="-1"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Botón flotante de WhatsApp -->
-  <a class="fab" id="fab" href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener noreferrer" aria-label="Agendar cita por WhatsApp">
-    <span class="fab__tip" aria-hidden="true">¿Agendamos tu cita? 💅</span>
+  <a class="fab" id="fab" href="https://wa.me/523326287517?text=Hola%20Garritas%20de%20Humo%2C%20tengo%20una%20pregunta." target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+    <span class="fab__tip" aria-hidden="true">¿Dudas? Escríbenos 💬</span>
     <span class="fab__btn">
       <span class="fab__pulse" aria-hidden="true"></span>
       <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>

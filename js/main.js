@@ -255,7 +255,7 @@
         el.classList.add('is-in');
         void el.offsetWidth; // fuerza reflow para reiniciar la transición
         el.classList.remove('is-in');
-      }, 560);
+      }, 440);
     }, 2900);
   }
 
@@ -268,13 +268,15 @@
     const hero = $('.hero');
     const canvas = $('#hero-canvas');
     const orb = $('.hero__orb');
+    const stack = $('#hero-stack');
     if (!hero || !canvas || !canvas.getContext) return;
     const ctx = canvas.getContext('2d');
 
     let w = 0, h = 0, mobile = false;
-    let lines = [], particles = [], puffs = [];
+    let lines = [], particles = [], puffs = [], sparkles = [];
     let running = false, inView = true, last = performance.now();
     const mouse = { x: -9999, y: -9999, tx: -9999, ty: -9999 };
+    let lastInput = -1e9; // última vez que hubo mouse o dedo sobre el hero
 
     const sprite = (r, rgb) => {
       const c = document.createElement('canvas');
@@ -290,6 +292,14 @@
     };
     const puffCream = sprite(128, '238,231,208');
     const puffGreen = sprite(128, '92,255,63');
+    const puffPink = sprite(128, '255,61,174');
+    const glowPink = sprite(32, '255,61,174');
+
+    // Reparte tonos: verde (marca), rosa (acento fashion) y crema
+    const pickTone = (green, pink) => {
+      const r = Math.random();
+      return r < green ? 'green' : r < green + pink ? 'pink' : 'cream';
+    };
 
     const orbCenter = () => (mobile ? { x: w * 0.5, y: h * 0.54 } : { x: w * 0.72, y: h * 0.5 });
 
@@ -303,7 +313,7 @@
         drift: Math.random() * Math.PI * 2,
         life: initial ? Math.random() : 0,
         speed: 0.0009 + Math.random() * 0.0012,
-        green: Math.random() < 0.4,
+        tone: pickTone(0.32, 0.4),
       };
     };
 
@@ -314,7 +324,18 @@
       vy: -(0.15 + Math.random() * 0.5),
       seed: Math.random() * 100,
       a: 0.25 + Math.random() * 0.6,
-      green: Math.random() < 0.45,
+      tone: pickTone(0.36, 0.38),
+    });
+
+    // Destellos rosas: estrellas de 4 puntas que titilan y cambian de lugar
+    const newSparkle = (initial) => ({
+      x: mobile ? Math.random() * w : w * (0.3 + Math.random() * 0.7),
+      y: h * (0.08 + Math.random() * 0.8),
+      size: (mobile ? 6 : 8) + Math.random() * (mobile ? 7 : 12),
+      life: 0,
+      speed: 0.006 + Math.random() * 0.007,
+      rot: Math.random() * Math.PI,
+      delay: initial ? Math.random() * 160 : 40 + Math.random() * 220,
     });
 
     function build() {
@@ -337,18 +358,20 @@
             ? w * (mobile ? 0.36 : 0.47) + i * gap
             : w * (mobile ? 0.5 : 0.36) - i * gap - h / slope;
           lines.push({
-            x0, slope, i, n,
+            x0, slope, i, n, b,
             amp: (mobile ? 8 : 12) + Math.random() * (mobile ? 10 : 16),
             f: 0.0035 + Math.random() * 0.004,
             sp: 0.25 + Math.random() * 0.35,
             ph: i * 0.38 + b * 2,
             glint: Math.random(),
+            pink: Math.random() < 0.5,
           });
         }
       }
       if (!particles.length) {
         particles = Array.from({ length: mobile ? 34 : 70 }, () => newParticle(true));
         puffs = Array.from({ length: mobile ? 4 : 7 }, () => newPuff(true));
+        sparkles = Array.from({ length: mobile ? 8 : 15 }, () => newSparkle(true));
       }
     }
 
@@ -365,12 +388,15 @@
 
         // Pulso de luz que viaja por cada línea
         const spot = ((T * 0.06 + L.glint) % 1.4) - 0.2;
-        const base = `rgba(142,125,109,${(0.14 + inner * 0.34).toFixed(3)})`;
+        const base = L.b === 1
+          ? `rgba(196,118,160,${(0.14 + inner * 0.36).toFixed(3)})`
+          : `rgba(142,125,109,${(0.14 + inner * 0.34).toFixed(3)})`;
         const grad = ctx.createLinearGradient(xa, 0, xb, 0);
         grad.addColorStop(0, base);
         if (spot > 0.06 && spot < 0.94) {
           grad.addColorStop(spot - 0.06, base);
-          grad.addColorStop(spot, `rgba(166,255,148,${(0.35 + inner * 0.5).toFixed(3)})`);
+          const a = (0.35 + inner * 0.5).toFixed(3);
+          grad.addColorStop(spot, L.pink ? `rgba(255,110,196,${a})` : `rgba(166,255,148,${a})`);
           grad.addColorStop(spot + 0.06, base);
         }
         grad.addColorStop(1, base);
@@ -408,7 +434,8 @@
         if (p.life >= 1) { puffs[i] = newPuff(false); continue; }
         ctx.globalAlpha = alpha;
         const r = p.r * (1 + p.life * 0.6);
-        ctx.drawImage(p.green ? puffGreen : puffCream, x - r, p.y - r, r * 2, r * 2);
+        const img = p.tone === 'green' ? puffGreen : p.tone === 'pink' ? puffPink : puffCream;
+        ctx.drawImage(img, x - r, p.y - r, r * 2, r * 2);
       }
       ctx.globalAlpha = 1;
     }
@@ -420,9 +447,12 @@
         p.x += Math.sin(T * 0.6 + p.seed) * 0.18 * dt;
         if (p.y < -10) { particles[i] = newParticle(false); continue; }
         const tw = 0.55 + 0.45 * Math.sin(T * 2 + p.seed);
-        ctx.fillStyle = p.green
-          ? `rgba(140,255,110,${(p.a * tw).toFixed(3)})`
-          : `rgba(238,231,208,${(p.a * tw * 0.8).toFixed(3)})`;
+        const a = p.a * tw;
+        ctx.fillStyle = p.tone === 'green'
+          ? `rgba(140,255,110,${a.toFixed(3)})`
+          : p.tone === 'pink'
+            ? `rgba(255,110,196,${a.toFixed(3)})`
+            : `rgba(238,231,208,${(a * 0.8).toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
@@ -430,10 +460,53 @@
       ctx.globalCompositeOperation = 'source-over';
     }
 
+    function drawSparkles(dt) {
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = 0; i < sparkles.length; i += 1) {
+        const sp = sparkles[i];
+        if (sp.delay > 0) { sp.delay -= dt; continue; }
+        sp.life += sp.speed * dt;
+        if (sp.life >= 1) { sparkles[i] = newSparkle(false); continue; }
+        const k = Math.sin(sp.life * Math.PI); // aparece y se apaga
+        const r = sp.size * k;
+        ctx.save();
+        ctx.translate(sp.x, sp.y);
+        ctx.globalAlpha = k;
+        ctx.drawImage(glowPink, -r * 2.6, -r * 2.6, r * 5.2, r * 5.2);
+        ctx.rotate(sp.rot + sp.life * 0.8);
+        ctx.fillStyle = 'rgba(255,170,222,0.95)';
+        ctx.beginPath();
+        ctx.moveTo(0, -r);
+        ctx.quadraticCurveTo(0, 0, r, 0);
+        ctx.quadraticCurveTo(0, 0, 0, r);
+        ctx.quadraticCurveTo(0, 0, -r, 0);
+        ctx.quadraticCurveTo(0, 0, 0, -r);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(0, 0, Math.max(0.6, r * 0.12), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
     function render(now) {
       const dt = Math.min((now - last) / 16.667, 3);
       last = now;
       const T = now * 0.001;
+
+      // Sin interacción reciente, un "cursor fantasma" recorre el hero: las ondas,
+      // el orbe y la pila de fotos siguen reaccionando en computadora y en celular.
+      if (now - lastInput > 2600) {
+        const gx = w * (0.5 + 0.36 * Math.sin(T * 0.33));
+        const gy = h * (0.46 + 0.28 * Math.sin(T * 0.51 + 1.3));
+        mouse.tx = gx;
+        mouse.ty = gy;
+        heroState.tox = (gx / w - 0.5) * 50;
+        heroState.toy = (gy / h - 0.5) * 36;
+      }
 
       if (mouse.tx > -1000) {
         if (mouse.x < -1000) { mouse.x = mouse.tx; mouse.y = mouse.ty; }
@@ -447,6 +520,7 @@
       drawPuffs(dt);
       drawLines(T);
       drawParticles(T, dt);
+      drawSparkles(dt);
 
       // Orbe: parallax con el puntero + reacción al scroll
       heroState.ox = lerp(heroState.ox, heroState.tox, 0.05);
@@ -456,6 +530,11 @@
         orb.style.setProperty('--oy', `${(heroState.oy + heroState.scroll * 120).toFixed(2)}px`);
         orb.style.setProperty('--os', (1 + heroState.scroll * 0.35).toFixed(3));
         orb.style.setProperty('--oo', (1 - heroState.scroll * 0.75).toFixed(3));
+      }
+      // Pila de fotos: inclinación 3D siguiendo el mismo objetivo que el orbe
+      if (stack) {
+        stack.style.setProperty('--ry', `${(heroState.ox / 50 * 16).toFixed(2)}deg`);
+        stack.style.setProperty('--rx', `${(-heroState.oy / 36 * 12).toFixed(2)}deg`);
       }
     }
 
@@ -489,19 +568,27 @@
       }, 160);
     });
 
-    if (finePointer) {
-      hero.addEventListener('pointermove', (e) => {
-        const r = hero.getBoundingClientRect();
-        mouse.tx = e.clientX - r.left;
-        mouse.ty = e.clientY - r.top;
-        heroState.tox = (e.clientX / window.innerWidth - 0.5) * 50;
-        heroState.toy = (e.clientY / window.innerHeight - 0.5) * 36;
-      });
-      hero.addEventListener('pointerleave', () => {
-        mouse.tx = mouse.ty = -9999;
-        heroState.tox = heroState.toy = 0;
-      });
-    }
+    // Entrada real: mouse/lápiz en escritorio, dedo en celular
+    const setTarget = (clientX, clientY) => {
+      const r = hero.getBoundingClientRect();
+      mouse.tx = clientX - r.left;
+      mouse.ty = clientY - r.top;
+      heroState.tox = (clientX / window.innerWidth - 0.5) * 50;
+      heroState.toy = (clientY / window.innerHeight - 0.5) * 36;
+      lastInput = performance.now();
+    };
+    hero.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'touch') setTarget(e.clientX, e.clientY);
+    });
+    hero.addEventListener('pointerleave', (e) => {
+      if (e.pointerType !== 'touch') lastInput = performance.now() - 2000; // el fantasma retoma en ~0.6 s
+    });
+    const onTouch = (e) => {
+      const t = e.touches[0];
+      if (t) setTarget(t.clientX, t.clientY);
+    };
+    hero.addEventListener('touchstart', onTouch, { passive: true });
+    hero.addEventListener('touchmove', onTouch, { passive: true });
 
     new IntersectionObserver(([entry]) => {
       inView = entry.isIntersecting;
@@ -512,23 +599,6 @@
     });
 
     onReady(start);
-  }
-
-  /* Pila de tarjetas del hero: inclinación 3D con el puntero */
-  function initStackTilt() {
-    const hero = $('.hero');
-    const stack = $('#hero-stack');
-    if (!hero || !stack || !finePointer || reduced) return;
-    hero.addEventListener('pointermove', (e) => {
-      const nx = e.clientX / window.innerWidth - 0.5;
-      const ny = e.clientY / window.innerHeight - 0.5;
-      stack.style.setProperty('--ry', `${(nx * 16).toFixed(2)}deg`);
-      stack.style.setProperty('--rx', `${(-ny * 12).toFixed(2)}deg`);
-    });
-    hero.addEventListener('pointerleave', () => {
-      stack.style.setProperty('--ry', '0deg');
-      stack.style.setProperty('--rx', '0deg');
-    });
   }
 
   /* ========================================================================
@@ -553,45 +623,66 @@
     const timeline = $('#timeline');
     const steps = timeline ? $$('.timeline__step', timeline) : [];
 
-    // Showcase horizontal
-    const sc = $('.showcase');
-    const track = $('#showcase-track');
-    const viewport = $('.showcase__viewport');
-    const numEl = $('#showcase-num');
-    const bar = $('#showcase-bar');
-    const total = track ? $$('.shot:not(.shot--cta)', track).length : 0;
-    const mqPin = window.matchMedia('(min-width: 1024px)');
-    let pinned = false;
-    let dist = 0;
+    // Galerías horizontales fijadas (portafolio + experiencia), en todos los tamaños
+    const hsList = $$('[data-hscroll]').map((sec) => ({
+      sec,
+      sticky: $('.hscroll__sticky', sec),
+      viewport: $('.hscroll__viewport', sec),
+      track: $('.hscroll__track', sec),
+      num: $('[data-hs-num]', sec),
+      bar: $('[data-hs-bar]', sec),
+      items: $$('[data-hs-item]', sec),
+      cells: $$('.hscroll__track > li', sec),
+      dist: 0,
+    }));
+    const pinned = !reduced;
+    let heroH = 0;
+    let lastW = window.innerWidth;
 
-    const setCounter = (p) => {
-      if (!numEl) return;
+    const setCounter = (hs, p) => {
+      if (!hs.num) return;
+      const total = hs.items.length;
       const idx = Math.min(total, Math.floor(p * (total + 0.6)) + 1);
-      numEl.textContent = String(idx).padStart(2, '0');
-      bar.style.setProperty('--p', Math.max(0.08, p).toFixed(3));
+      hs.num.textContent = String(idx).padStart(2, '0');
+      hs.bar.style.setProperty('--p', Math.max(0.08, p).toFixed(3));
     };
 
-    function setupShowcase() {
-      if (!sc || !track) return;
-      pinned = mqPin.matches && !reduced;
-      sc.classList.toggle('is-pinned', pinned);
-      track.style.transform = '';
-      if (pinned) {
-        dist = Math.max(0, track.scrollWidth - window.innerWidth);
-        sc.style.height = `${dist + window.innerHeight}px`;
-      } else {
-        sc.style.height = '';
-      }
+    // "Coverflow": distancia de cada elemento al centro de la pantalla (-1…1)
+    const setOffsets = (hs) => {
+      const vw = window.innerWidth;
+      hs.cells.forEach((li) => {
+        const r = li.getBoundingClientRect();
+        const off = clamp((r.left + r.width / 2 - vw / 2) / (vw / 2), -1.5, 1.5);
+        li.style.setProperty('--off', off.toFixed(3));
+        li.style.setProperty('--offa', Math.min(1, Math.abs(off)).toFixed(3));
+      });
+    };
+
+    function setup() {
+      const hero = $('.hero');
+      heroH = hero ? hero.offsetHeight : window.innerHeight;
+      hsList.forEach((hs) => {
+        hs.sec.classList.toggle('is-pinned', pinned);
+        hs.track.style.transform = '';
+        if (pinned) {
+          hs.dist = Math.max(0, hs.track.scrollWidth - hs.viewport.clientWidth);
+          // La altura fija usa 100svh: no salta cuando se oculta la barra del navegador
+          hs.sec.style.height = `${hs.dist + hs.sticky.offsetHeight}px`;
+        } else {
+          hs.sec.style.height = '';
+        }
+      });
       update();
     }
 
-    if (viewport) {
-      viewport.addEventListener('scroll', () => {
+    // Movimiento reducido: carrusel nativo, el contador sigue al scroll lateral
+    hsList.forEach((hs) => {
+      hs.viewport.addEventListener('scroll', () => {
         if (pinned) return;
-        const max = viewport.scrollWidth - viewport.clientWidth;
-        setCounter(max > 0 ? viewport.scrollLeft / max : 0);
+        const max = hs.viewport.scrollWidth - hs.viewport.clientWidth;
+        setCounter(hs, max > 0 ? hs.viewport.scrollLeft / max : 0);
       }, { passive: true });
-    }
+    });
 
     let lastY = window.scrollY;
     let ticking = false;
@@ -613,17 +704,16 @@
       }
       lastY = y;
 
-      // Hero: parallax de salida
-      if (y < vh * 1.3) {
-        const p = clamp(y / vh, 0, 1);
+      // Hero: parallax de salida. Arranca cuando el final del hero llega al borde
+      // inferior de la pantalla (en desktop mide una pantalla; en móvil es más alto),
+      // así el efecto es el mismo en ambos sin oscurecer las fotos antes de verlas.
+      const heroStart = Math.max(0, heroH - vh);
+      if (y < heroStart + vh * 1.3) {
+        const p = clamp((y - heroStart) / vh, 0, 1);
         heroState.scroll = p;
-        // Solo en desktop: en móvil el hero es más alto que la pantalla y el fade oscurecería las fotos.
-        if (heroInner && !reduced && mqPin.matches) {
-          heroInner.style.transform = `translate3d(0, ${(y * 0.2).toFixed(1)}px, 0)`;
+        if (heroInner && !reduced) {
+          heroInner.style.transform = `translate3d(0, ${(Math.max(0, y - heroStart) * 0.22).toFixed(1)}px, 0)`;
           heroInner.style.opacity = (1 - p * 0.85).toFixed(3);
-        } else if (heroInner && heroInner.style.opacity) {
-          heroInner.style.transform = '';
-          heroInner.style.opacity = '';
         }
       }
 
@@ -653,12 +743,17 @@
         }
       }
 
-      // Showcase fijado
-      if (pinned && dist > 0) {
-        const r = sc.getBoundingClientRect();
-        const p = clamp(-r.top / dist, 0, 1);
-        track.style.transform = `translate3d(${(-p * dist).toFixed(1)}px, 0, 0)`;
-        setCounter(p);
+      // Galerías horizontales
+      if (pinned) {
+        hsList.forEach((hs) => {
+          if (hs.dist <= 0) return;
+          const r = hs.sec.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) return;
+          const p = clamp(-r.top / hs.dist, 0, 1);
+          hs.track.style.transform = `translate3d(${(-p * hs.dist).toFixed(1)}px, 0, 0)`;
+          setCounter(hs, p);
+          setOffsets(hs);
+        });
       }
 
       // Enlace activo del menú
@@ -675,19 +770,78 @@
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(setupShowcase, 180);
+      resizeTimer = setTimeout(() => {
+        // En celular la barra del navegador dispara "resize" al hacer scroll:
+        // si el ancho no cambió, no hace falta recalcular las galerías.
+        if (!finePointer && window.innerWidth === lastW) { update(); return; }
+        lastW = window.innerWidth;
+        setup();
+      }, 180);
     });
-    mqPin.addEventListener('change', setupShowcase);
-    window.addEventListener('load', setupShowcase);
+    window.addEventListener('load', setup);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(setup);
 
-    setupShowcase();
+    setup();
   }
 
   /* ========================================================================
      MICRO-INTERACCIONES · spotlight, tilt, magnético, cursor
      ======================================================================== */
+  /* En celular no hay hover: la luz de cada tarjeta la recorre sola mientras está
+     en pantalla, y sigue al dedo cuando la tocas (mismo efecto que en escritorio). */
+  function initTouchFx() {
+    if (reduced || !('IntersectionObserver' in window)) return;
+    const visible = new Map();
+    let running = false;
+
+    const loop = (now) => {
+      if (!visible.size) { running = false; return; }
+      const t = now * 0.001;
+      visible.forEach((d, el) => {
+        if (now - d.touched < 1600) return;
+        el.style.setProperty('--mx', `${((0.5 + 0.42 * Math.sin(t * 0.9 + d.i * 1.7)) * d.w).toFixed(1)}px`);
+        el.style.setProperty('--my', `${((0.5 + 0.42 * Math.cos(t * 0.7 + d.i * 1.3)) * d.h).toFixed(1)}px`);
+      });
+      requestAnimationFrame(loop);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          const prev = visible.get(en.target);
+          visible.set(en.target, {
+            i: Number(en.target.dataset.si),
+            w: en.boundingClientRect.width,
+            h: en.boundingClientRect.height,
+            touched: prev ? prev.touched : 0,
+          });
+        } else {
+          visible.delete(en.target);
+        }
+      });
+      if (visible.size && !running) { running = true; requestAnimationFrame(loop); }
+    });
+
+    $$('[data-spotlight]').forEach((el, i) => {
+      el.dataset.si = String(i);
+      el.classList.add('is-auto');
+      io.observe(el);
+      const follow = (e) => {
+        const tch = e.touches[0];
+        if (!tch) return;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', `${tch.clientX - r.left}px`);
+        el.style.setProperty('--my', `${tch.clientY - r.top}px`);
+        const d = visible.get(el);
+        if (d) d.touched = performance.now();
+      };
+      el.addEventListener('touchstart', follow, { passive: true });
+      el.addEventListener('touchmove', follow, { passive: true });
+    });
+  }
+
   function initPointerFx() {
-    if (!finePointer) return;
+    if (!finePointer) { initTouchFx(); return; }
 
     $$('[data-spotlight]').forEach((el) => {
       el.addEventListener('pointermove', (e) => {
@@ -931,6 +1085,146 @@
   }
 
   /* ========================================================================
+     AGENDA EN LÍNEA · modal con Google Calendar
+     Cualquier elemento con [data-booking] abre el modal. Sin JS (o sin
+     soporte de <dialog>), el enlace abre la agenda en una pestaña nueva.
+
+     Rendimiento: el tiempo de respuesta de Google no se puede acelerar desde
+     aquí, así que la agenda empieza a cargar ANTES de que se necesite:
+       1. preconnect en <head> (DNS + TLS listos),
+       2. al pasar el mouse, enfocar o tocar cualquier CTA de agenda,
+       3. en segundo plano, unos segundos después de cargar la página
+          (excepto con ahorro de datos o conexiones 2G).
+     Y al abrir, primero se muestra una guía de pasos: mientras se lee, la
+     agenda termina de cargar detrás con su tamaño real.
+     ======================================================================== */
+  function initBooking() {
+    const dlg = $('#booking');
+    const frame = $('#booking-frame');
+    if (!dlg || !frame || typeof dlg.showModal !== 'function') return;
+
+    const slow = $('.booking__slow', dlg);
+    const statusText = $('.booking__status-text', dlg);
+    const loadText = $('.booking__loading-text', dlg);
+    const asideSteps = $$('.booking__steps li', dlg);
+    const goBtn = $('[data-booking-go]', dlg);
+    const MSGS = ['Conectando con Google Calendar…', 'Buscando horarios disponibles…', 'Acomodando tu calendario…'];
+
+    let started = false;
+    let ready = false;
+    let progress = 0;
+    let startT = 0;
+    let raf = 0;
+    let slowTimer;
+    let closing = false;
+
+    // Progreso estimado: avanza rápido al inicio y se frena cerca del 92 %
+    // hasta que Google confirma la carga; entonces salta a 100 %.
+    const paint = () => {
+      dlg.style.setProperty('--load', (progress / 100).toFixed(3));
+      const msg = ready ? '¡Agenda lista!' : MSGS[Math.min(MSGS.length - 1, Math.floor(progress / 34))];
+      if (statusText && statusText.textContent !== msg) statusText.textContent = msg;
+      if (loadText && loadText.textContent !== msg) loadText.textContent = msg;
+    };
+    const tick = (now) => {
+      if (ready) return;
+      progress = 92 * (1 - Math.exp(-((now - startT) / 1000) / 1.4));
+      paint();
+      raf = requestAnimationFrame(tick);
+    };
+
+    // Empieza a cargar la agenda (una sola vez)
+    const warm = () => {
+      if (started) return;
+      started = true;
+      frame.src = frame.dataset.src;
+      startT = performance.now();
+      raf = requestAnimationFrame(tick);
+      slowTimer = setTimeout(() => { if (!ready && slow) slow.hidden = false; }, 10000);
+    };
+
+    frame.addEventListener('load', () => {
+      if (!frame.src || ready) return;
+      // Google pinta sus horarios justo después del evento load: margen breve
+      setTimeout(() => {
+        ready = true;
+        cancelAnimationFrame(raf);
+        progress = 100;
+        paint();
+        dlg.classList.add('is-loaded');
+        clearTimeout(slowTimer);
+        if (slow) slow.hidden = true;
+      }, 500);
+    });
+
+    // Vista: guía de pasos (false) o agenda (true)
+    const setView = (calendar) => {
+      dlg.classList.toggle('is-calendar', calendar);
+      asideSteps.forEach((li, i) => li.classList.toggle('is-active', calendar ? i === 1 : i === 0));
+      frame.tabIndex = calendar ? 0 : -1;
+    };
+    setView(false);
+
+    const open = () => {
+      closeMenu();
+      warm();
+      dlg.classList.remove('is-closing');
+      dlg.showModal();
+      root.classList.add('booking-open');
+      if (lenis) lenis.stop();
+      // Si ya estaba en la agenda (la cerró y volvió), se queda ahí con lo capturado
+      if (!dlg.classList.contains('is-calendar') && goBtn) goBtn.focus({ preventScroll: true });
+    };
+
+    const close = () => {
+      if (!dlg.open || closing) return;
+      if (reduced) { dlg.close(); return; }
+      closing = true;
+      dlg.classList.add('is-closing');
+      setTimeout(() => {
+        dlg.close();
+        dlg.classList.remove('is-closing');
+        closing = false;
+      }, 340);
+    };
+
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-booking]');
+      if (!trigger) return;
+      e.preventDefault();
+      open();
+    });
+
+    // Intención: en cuanto el cursor, el foco o el dedo llegan a un CTA, se precarga
+    const onIntent = (e) => { if (e.target.closest && e.target.closest('[data-booking]')) warm(); };
+    document.addEventListener('pointerover', onIntent, { passive: true });
+    document.addEventListener('focusin', onIntent);
+    document.addEventListener('touchstart', onIntent, { passive: true });
+
+    // Precarga silenciosa tras cargar la página (respetando conexiones lentas)
+    window.addEventListener('load', () => {
+      const c = navigator.connection;
+      if (c && (c.saveData || /(^|-)2g/.test(c.effectiveType || ''))) return;
+      setTimeout(() => {
+        if ('requestIdleCallback' in window) window.requestIdleCallback(warm, { timeout: 3000 });
+        else warm();
+      }, 3500);
+    });
+
+    if (goBtn) goBtn.addEventListener('click', () => setView(true));
+    $$('[data-booking-back]', dlg).forEach((btn) => btn.addEventListener('click', () => setView(false)));
+    $$('[data-booking-close]', dlg).forEach((btn) => btn.addEventListener('click', close));
+    // Clic fuera del panel (en el fondo oscuro) cierra
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+    // Esc: cierre con animación en lugar del cierre instantáneo del navegador
+    dlg.addEventListener('cancel', (e) => { e.preventDefault(); close(); });
+    dlg.addEventListener('close', () => {
+      root.classList.remove('booking-open');
+      if (lenis) lenis.start();
+    });
+  }
+
+  /* ========================================================================
      BOTÓN FLOTANTE · burbuja de ayuda una vez por sesión
      ======================================================================== */
   function initFab() {
@@ -956,7 +1250,6 @@
   safe(initNav);
   safe(initReveal);
   safe(initHeroCanvas);
-  safe(initStackTilt);
   safe(initScrollScenes);
   safe(initPointerFx);
   safe(initCounters);
@@ -964,6 +1257,7 @@
   safe(initReviews);
   safe(initFaq);
   safe(initForm);
+  safe(initBooking);
   safe(initFab);
   onReady(initCycle);
 
