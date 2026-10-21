@@ -14,7 +14,7 @@
   const root = document.documentElement;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const WA_NUMBER = '523326287517';
+  const WA_NUMBER = '';
 
   let lenis = null;
   const readyCallbacks = [];
